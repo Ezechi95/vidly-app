@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Like from "./common/like";
 
 class Table extends Component {
   state = {};
@@ -9,21 +10,25 @@ class Table extends Component {
       <table className="table">
         <thead>
           <tr>
-            <th scope="col">Title</th>
-            <th scope="col">Genre</th>
-            <th scope="col">Stock</th>
-            <th scope="col">Rate</th>
-            <th scope="col"></th>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Stock</th>
+            <th>Rate</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         {tableContent.map(e => (
           <tbody key={e._id}>
             <tr>
-              <td className="col">{e.title}</td>
-              <td className="col">{e.genre.name}</td>
-              <td className="col">{e.numberInStock}</td>
-              <td className="col">{e.dailyRentalRate}</td>
-              <td className="col">
+              <td>{e.title}</td>
+              <td>{e.genre.name}</td>
+              <td>{e.numberInStock}</td>
+              <td>{e.dailyRentalRate}</td>
+              <td>
+                <Like toggleVal={e.liked} />
+              </td>
+              <td>
                 <button
                   onClick={() => onDelete(e._id)}
                   className="btn btn-danger"
