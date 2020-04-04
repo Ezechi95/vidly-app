@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./App.css";
-import Header from "./components/header";
 import Table from "./components/table";
 import { getMovies, deleteMovie } from "./services/fakeMovieService";
 
@@ -16,8 +15,7 @@ class App extends Component {
 
   render() {
     return (
-      <main className="container">
-        <Header getMovies={this.state.movies} />
+      <main className="container m-2">
         <Table getMovies={this.state.movies} onDelete={this.handleDelete} />
       </main>
     );
