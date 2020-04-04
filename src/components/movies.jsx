@@ -15,7 +15,7 @@ class Movies extends Component {
   };
 
   componentDidMount() {
-    const genres = [{ name: "All Genres" }, ...getGenres()];
+    const genres = [{ _id: "00", name: "All Genres" }, ...getGenres()];
     this.setState({ movies: this.props.getMovies, genres });
   }
 
@@ -25,6 +25,22 @@ class Movies extends Component {
 
   handleGenreSelect = genre => {
     this.setState({ selectedGenre: genre, currentPage: 1 });
+  };
+
+  handleLike = movie => {
+    // finish later
+    const movies = [...this.state.movies];
+    const index = movies.indexOf(movie);
+    movies[index] = { ...movie };
+
+    if (movies[index].liked === false) {
+      movies[index].liked = true;
+    } else if (movies[index].liked === true) {
+      movies[index].liked = false;
+    }
+    console.log("Liked: ", movies);
+
+    // this.setState({ movies });
   };
 
   render() {
@@ -54,7 +70,11 @@ class Movies extends Component {
         </div>
         <div className="col">
           <Header getMovies={filtered} />
-          <MoviesTable movies={filtered} onDelete={onDelete} />
+          <MoviesTable
+            movies={movies}
+            onDelete={onDelete}
+            onLike={this.handleLike}
+          />
           <Pagination
             itemsCount={filtered.length}
             pageSize={pageSize}

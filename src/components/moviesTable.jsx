@@ -2,7 +2,8 @@ import React from "react";
 import Like from "./common/like";
 
 const MoviesTable = props => {
-  const { movies, onDelete } = props;
+  const { movies, onDelete, onLike } = props;
+  console.log("moveis", movies);
   return (
     <table className="table">
       <thead>
@@ -23,7 +24,7 @@ const MoviesTable = props => {
             <td>{e.numberInStock}</td>
             <td>{e.dailyRentalRate}</td>
             <td>
-              <Like toggleVal={e.liked} />
+              <Like likeableMovie={e} onClick={onLike} />
             </td>
             <td>
               <button

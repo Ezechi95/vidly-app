@@ -2,14 +2,15 @@ import React, { Component } from "react";
 
 class Like extends Component {
   state = {
-    liked: this.props.toggleVal
+    movie: this.props.likeableMovie
   };
 
   render() {
-    const toggle = this.state.liked;
+    const toggle = this.state.movie.liked;
     return (
       <i
-        onClick={() => this.onToggleClick(toggle)}
+        // onClick={() => this.onToggleClick(toggle)}
+        onClick={() => this.props.onClick(this.state.movie)}
         className={this.handleLike(toggle)}
         style={{ cursor: "pointer" }}
         aria-hidden="true"
