@@ -7,7 +7,7 @@ class Header extends Component {
   }
 
   formatCount() {
-    const value = this.props.getMovies.length;
+    const value = this.props.getMovies;
     return value === 0 ? (
       "There are no movies in the database."
     ) : (
