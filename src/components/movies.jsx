@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import Like from "./common/like";
 import ListGroup from "./common/listGroup";
 import Pagination from "./common/pagination";
-import Header from "../components/header";
+import Header from "./header";
 import { paginate } from "../utils/paginate";
 import { getGenres } from "../services/fakeGenreService";
+import MoviesTable from "./moviesTable";
 
-class Table extends Component {
+class Movies extends Component {
   state = {
     movies: [],
     genres: [],
@@ -54,39 +54,7 @@ class Table extends Component {
         </div>
         <div className="col">
           <Header getMovies={filtered} />
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Genre</th>
-                <th>Stock</th>
-                <th>Rate</th>
-                <th></th>
-                <th></th>
-              </tr>
-            </thead>
-            {movies.map(e => (
-              <tbody key={e._id}>
-                <tr>
-                  <td>{e.title}</td>
-                  <td>{e.genre.name}</td>
-                  <td>{e.numberInStock}</td>
-                  <td>{e.dailyRentalRate}</td>
-                  <td>
-                    <Like toggleVal={e.liked} />
-                  </td>
-                  <td>
-                    <button
-                      onClick={() => onDelete(e._id)}
-                      className="btn btn-danger"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            ))}
-          </table>
+          <MoviesTable movies={filtered} onDelete={onDelete} />
           <Pagination
             itemsCount={filtered.length}
             pageSize={pageSize}
@@ -99,4 +67,4 @@ class Table extends Component {
   }
 }
 
-export default Table;
+export default Movies;
